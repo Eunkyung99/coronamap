@@ -2,3 +2,15 @@ body {
   padding: 0px !important;
   margin: 0px !important;
 }
+
+#navbar{
+  height: 40px; /* 높이 지정*/
+  width: 100%; /*너비 지정*/
+  background:#F7D358;
+  color: white; /*font color*/
+  font-weight: bolder; /*두께*/ 
+  font-weight: 25px;
+  display: flex; /*수직*/
+  justify-content: center;
+  align-items: center; /*가운데 정렬*/
+}
