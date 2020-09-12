@@ -82,7 +82,23 @@ for(var i=0, ii=markerList.length; i<ii; i++){
 }
 
 $('#current').click(()=>{
-  alert("클릭 이벤트");
+  if('geolocation' in navigator){
+    navigator.geolocation.getCurrentPosition(function(position){ //position: 현재 위치 정보
+      const lat=position.coords.latitude;
+      const lng=position.coords.longitude;
+      const latlng=new naver.maps.LatLng(lat, lng);
+      marker=new naver.maps.Marker({
+        map: map,
+        position: latlng,
+      });
+    //현재 위치로 자동 zoom
+    map.setZoom(14, false); //false: 이동하는 애니메이션 주지 않겠다
+    map.panTo(latlng);
+    });
+  }else{
+    alert("위치정보 사용 불가능"); //경고창 표시
+  }
+
 });
 </script>
 </body>
