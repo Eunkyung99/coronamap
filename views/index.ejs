@@ -24,6 +24,8 @@ var mapOptions = {
 };
 
 var map = new naver.maps.Map('map', mapOptions);
+var markerList=[]; 
+var infowindowList=[];
 
 for(var i in data){
   var target=data[i];
@@ -32,9 +34,41 @@ for(var i in data){
     map: map, /*map 변수 위에*/
     position: latlng, /*마커 위치*/
     icon: {
-      content: "<div class='marker'></div>" /*마커 클래스 css에 정의*/
+      content: "<div class='marker'></div>", /*마커 클래스 css에 정의*/
+      anchor: new naver.maps.Point(12, 12) /*중심 좌표 설정 높낮이 24*/
     }
-  })  
+  });
+  var content=`<div class='infowindow_wrap'>
+      <div class='infowindow_title'>${target.title}</div>
+      <div class='infowindow_content'>${target.content}</div>
+      <div class='infowindow_date'>${target.date}</div>
+  </div>` /*백틱 사용하여 string 출력 ${변수}, 마커 클릭하면 나오게 될 정보*/  
+
+  var infowindow = new naver.maps.InfoWindow({
+    content: content,
+    backgroundColor: "#00ff0000",
+    borderColor: "#00ff0000",
+    anchorSize: new naver.maps.Size(0, 0), /*말풍선형태*/
+  })
+  markerList.push(marker);
+  infowindowList.push(infowindow);
+}
+function getClickHandler(i){
+  return function(){
+    var marker=markerList[i];
+    var infowindow=infowindowList[i];
+    //infowindow 지도에 표시
+    if(infowindow.getMap()){ //지도가 띄워졌는지 bool
+      infowindow.close();
+    }
+    else{
+      infowindow.open(map, marker); //marker 위에 infowindow 열림
+    }
+  }
+}
+for(var i=0, ii=markerList.length; i<ii; i++){
+  naver.maps.Event.addListener(markerList[i], "click", getClickHandler(i)); /*click event*/
+  //click하면 getClickHandler 실행
 }
 </script>
 </body>
