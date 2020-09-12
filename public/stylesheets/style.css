@@ -34,7 +34,7 @@ body {
 
 .marker{
   border: 1px solid black; 
-  background: green;
+  background: red;
   opacity: 0.6;
   width: 24px;
   height: 24px;
