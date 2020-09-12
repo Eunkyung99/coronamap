@@ -40,3 +40,26 @@ body {
   height: 24px;
   border-radius: 50%;
 }
+
+.infowindow_wrap{
+  background: white;
+  padding: 15px;
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  border-radius: 20%;
+}
+
+.infowindow_title{
+  font-size: 15px;
+  font-weight: bolder;
+  color: navy;
+}
+
+.infowindow_content{
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.infowindow_date{
+  font-size: 13px;
+  font-weight: normal;
+}
